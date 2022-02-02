@@ -153,7 +153,7 @@ extension RegisterView {
 
 extension RegisterView {
     var documentField: some View {
-        EditTextView(text: $viewModel.userDetails.document,
+        EditTextView(text: $viewModel.document,
                      placeholder: "Entre com seu CPF *",
                      mask: "###.###.###-##",
                      keyboard: .numberPad,
@@ -165,7 +165,7 @@ extension RegisterView {
 
 extension RegisterView {
     var phoneField: some View {
-        EditTextView(text: $viewModel.userDetails.phone,
+        EditTextView(text: $viewModel.phone,
                      placeholder: "Entre com seu celular *",
                      mask: "(##) ####-####",
                      keyboard: .numberPad,
@@ -177,7 +177,7 @@ extension RegisterView {
 
 extension RegisterView {
     var birthdayField: some View {
-        EditTextView(text: $viewModel.userDetails.birthday,
+        EditTextView(text: $viewModel.birthday,
                      placeholder: "Entre com com sua data de nascimento *",
                      mask: "##/##/####",
                      keyboard: .numberPad,
@@ -189,7 +189,7 @@ extension RegisterView {
 
 extension RegisterView {
     var genderField: some View {
-        Picker("Gender", selection: $viewModel.userDetails.gender) {
+        Picker("Gender", selection: $viewModel.gender) {
             ForEach(Gender.allCases, id: \.self) { value in
                 Text(value.rawValue)
                     .tag(value)
