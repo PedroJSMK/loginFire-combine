@@ -58,21 +58,7 @@ final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
     
     func register() {
         
-        service
-            .register(with: userDetails)
-            .sink { [weak self] res in
-                switch res {
-                case .failure(let error):
-                    self?.state = .failed(error: error)
-                default: break
-                }
-            } receiveValue: { [weak self] in
-                self?.state = .successfull
-            }
-            .store(in: &subscriptions)
-        
-        
-        
+ 
         func uploadPhoto() {
             let filename = UUID().uuidString
             
@@ -80,7 +66,7 @@ final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
             
             let newMetadata = StorageMetadata()
             
-            let ref = Storage.storage().reference(withPath: "/images/\(filename).pg")
+            let ref = Storage.storage().reference(withPath: "/images/\(filename).jpg")
             
             ref.putData(data, metadata: newMetadata) { metadata, err in
                 ref.downloadURL { url, error in
@@ -111,23 +97,27 @@ final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
         formatter.dateFormat = "yyyy-MM-dd"
          let birthday = formatter.string(from: dateFormatted)
         
-        let signUpRequest = WebService.postUser(request: RegistrationModel(fullName: fullName,
-                                                       email: email,
-                                                       password: password,
-                                                       document: document,
-                                                       phone: phone,
-                                                       birthday: birthday,
-                                                       gender: gender.index))
-       
+         userDetails = RegistrationModel(fullName: fullName,
+                                         email: email,
+                                         password: password,
+                                         document: document,
+                                         phone: phone,
+                                         birthday: birthday,
+                                         gender: gender.index)
+        service
+            .register(with: userDetails)
+            .sink { [weak self] res in
+                switch res {
+                case .failure(let error):
+                    self?.state = .failed(error: error)
+                default: break
+                }
+            } receiveValue: { [weak self] in
+                self?.state = .successfull
+            }
+            .store(in: &subscriptions)
         
-//        _ = RegistrationModel(fullName: fullName,
-//                                          email: email,
-//                                          password: password,
-//                                          document: document,
-//                                          phone: phone,
-//                                          birthday: birthday,
-//                                          gender: gender.index)
-//        
+     
     }
     
 }

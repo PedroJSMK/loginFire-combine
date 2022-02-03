@@ -21,13 +21,16 @@ struct RegistrationModel: Encodable {
 extension RegistrationModel {
     
    static var new: RegistrationModel {
-       RegistrationModel(fullName: "",
+       RegistrationModel(
+                        fullName: "",
                          email: "",
                          password: "",
                           document: "",
                           phone: "",
                           birthday: "",
                           gender: 1)
+       
+        
  
     }
 }

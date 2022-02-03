@@ -203,7 +203,7 @@
 			children = (
 				23459B52279C2C31007D632D /* View */,
 				23459B64279C3B02007D632D /* ViewModel */,
-				23459B61279C3693007D632D /* Service */,
+				23459B61279C3693007D632D /* Interactor */,
 				23459B5E279C3607007D632D /* Model */,
 			);
 			path = Register;
@@ -253,12 +253,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		23459B61279C3693007D632D /* Service */ = {
+		23459B61279C3693007D632D /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
 				23459B62279C36D1007D632D /* RegistrationService.swift */,
 			);
-			path = Service;
+			path = Interactor;
 			sourceTree = "<group>";
 		};
 		23459B64279C3B02007D632D /* ViewModel */ = {

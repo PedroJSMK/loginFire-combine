@@ -122,18 +122,18 @@ extension RegisterView {
 
 extension RegisterView {
     var emailField: some View {
-        EditTextView(text: $viewModel.userDetails.email,
+        EditTextView(text: $viewModel.email,
                      placeholder: "Entre com seu e-mail *",
                      keyboard: .emailAddress,
                      error: "E-mail inválido",
-                     failure: !viewModel.userDetails.email.isEmail(),
+                     failure: !viewModel.email.isEmail(),
                      sfSymbol: "mail")
     }
 }
 
 extension RegisterView {
     var passwordField: some View {
-        InputPasswordView(password: $viewModel.userDetails.password,
+        InputPasswordView(password: $viewModel.password,
                           placeholder: "Senha", sfSymbol: "lock")
         
     }
@@ -141,11 +141,11 @@ extension RegisterView {
 
 extension RegisterView {
     var fullNameField: some View {
-        EditTextView(text: $viewModel.userDetails.fullName,
+        EditTextView(text: $viewModel.fullName,
                      placeholder: "Entre com seu nome completo *",
                      keyboard: .alphabet,
                      error: "Nome deve ter mais de 3 caracteres",
-                     failure: viewModel.userDetails.fullName.count < 3,
+                     failure: viewModel.fullName.count < 3,
                      autocapitalization: .words,
                      sfSymbol: "envelope")
     }
