@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		230B2A6C27AD3B3300E16EEC /* RegisterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230B2A6B27AD3B3300E16EEC /* RegisterButtonView.swift */; };
+		230B2A6E27AD3E3A00E16EEC /* RegisrationUIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230B2A6D27AD3E3A00E16EEC /* RegisrationUIState.swift */; };
 		23459B1F279B1966007D632D /* FirebaseCombineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23459B1E279B1966007D632D /* FirebaseCombineApp.swift */; };
 		23459B23279B1969007D632D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23459B22279B1969007D632D /* Assets.xcassets */; };
 		23459B26279B1969007D632D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23459B25279B1969007D632D /* Preview Assets.xcassets */; };
@@ -38,7 +40,6 @@
 		23459B70279C6EE9007D632D /* LoginCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23459B6F279C6EE9007D632D /* LoginCredentials.swift */; };
 		23459B73279C6F2D007D632D /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23459B72279C6F2D007D632D /* LoginService.swift */; };
 		23459B76279C70BD007D632D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23459B75279C70BD007D632D /* LoginViewModel.swift */; };
-		2354FC2D27A2B38C00C11DAF /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2354FC2C27A2B38C00C11DAF /* WebService.swift */; };
 		2359D93B27A9655000BE571F /* FirebaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2359D93A27A9655000BE571F /* FirebaseError.swift */; };
 		23EF33D6279D7E0D00AB7D13 /* ForgotPasswordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EF33D5279D7E0D00AB7D13 /* ForgotPasswordService.swift */; };
 		23EF33DA279D7F2000AB7D13 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EF33D9279D7F2000AB7D13 /* ForgotPasswordViewModel.swift */; };
@@ -55,6 +56,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		230B2A6B27AD3B3300E16EEC /* RegisterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterButtonView.swift; sourceTree = "<group>"; };
+		230B2A6D27AD3E3A00E16EEC /* RegisrationUIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisrationUIState.swift; sourceTree = "<group>"; };
 		23459B1B279B1966007D632D /* FirebaseCombine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirebaseCombine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23459B1E279B1966007D632D /* FirebaseCombineApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCombineApp.swift; sourceTree = "<group>"; };
 		23459B22279B1969007D632D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -77,7 +80,6 @@
 		23459B6F279C6EE9007D632D /* LoginCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCredentials.swift; sourceTree = "<group>"; };
 		23459B72279C6F2D007D632D /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		23459B75279C70BD007D632D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		2354FC2C27A2B38C00C11DAF /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		2359D93A27A9655000BE571F /* FirebaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseError.swift; sourceTree = "<group>"; };
 		23EF33D5279D7E0D00AB7D13 /* ForgotPasswordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordService.swift; sourceTree = "<group>"; };
 		23EF33D9279D7F2000AB7D13 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				23459B5F279C3621007D632D /* RegistrationModel.swift */,
+				230B2A6D27AD3E3A00E16EEC /* RegisrationUIState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -265,7 +268,6 @@
 			isa = PBXGroup;
 			children = (
 				23459B65279C3B28007D632D /* RegistrationViewModel.swift */,
-				2354FC2C27A2B38C00C11DAF /* WebService.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -358,6 +360,7 @@
 				23459B4D279B2396007D632D /* ButtonView.swift */,
 				23EF33E9279DAC7500AB7D13 /* ImagePickerView.swift */,
 				23EF33DF279D9D3900AB7D13 /* GenderSelectorView.swift */,
+				230B2A6B27AD3B3300E16EEC /* RegisterButtonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -489,7 +492,9 @@
 				23EF33E7279DAC2E00AB7D13 /* ImagePickerPhoto.swift in Sources */,
 				23459B76279C70BD007D632D /* LoginViewModel.swift in Sources */,
 				23459B57279C2E0A007D632D /* CloseModier.swift in Sources */,
+				230B2A6C27AD3B3300E16EEC /* RegisterButtonView.swift in Sources */,
 				23EF33DD279D9A1200AB7D13 /* Gender.swift in Sources */,
+				230B2A6E27AD3E3A00E16EEC /* RegisrationUIState.swift in Sources */,
 				23EF33E8279DAC2E00AB7D13 /* ButtonStyle.swift in Sources */,
 				23EF33F1279DAFE200AB7D13 /* Mask.swift in Sources */,
 				23EF33E3279DAC2400AB7D13 /* CustomTextFieldStyle.swift in Sources */,
@@ -499,7 +504,6 @@
 				23EF33E0279D9D3900AB7D13 /* GenderSelectorView.swift in Sources */,
 				23459B54279C2C56007D632D /* RegisterView.swift in Sources */,
 				23EF33F5279DB02100AB7D13 /* Date+Extension.swift in Sources */,
-				2354FC2D27A2B38C00C11DAF /* WebService.swift in Sources */,
 				23EF33EE279DAFC000AB7D13 /* EditTextView.swift in Sources */,
 				23459B70279C6EE9007D632D /* LoginCredentials.swift in Sources */,
 				23459B1F279B1966007D632D /* FirebaseCombineApp.swift in Sources */,

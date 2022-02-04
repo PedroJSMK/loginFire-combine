@@ -9,10 +9,13 @@ import Foundation
 import Combine
 import SwiftUI
 import FirebaseStorage
+import Firebase
 
 enum RegistrationState {
     case successfull
+    case loading
     case failed(error: Error)
+    case erro(erro: String)
     case na
 }
 
@@ -44,6 +47,7 @@ final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
     private var cancellableSignUp: AnyCancellable?
     private var cancellableSignIn: AnyCancellable?
     
+    @Published var uiState: RegisrationUIState = .none
 
     let service: RegistrationService
     
@@ -66,7 +70,7 @@ final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
             
             let newMetadata = StorageMetadata()
             
-            let ref = Storage.storage().reference(withPath: "/images/\(filename).jpg")
+            let ref = Storage.storage().reference(withPath: "/images/\(filename).pg")
             
             ref.putData(data, metadata: newMetadata) { metadata, err in
                 ref.downloadURL { url, error in
@@ -78,8 +82,7 @@ final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
         
         if(image.size.width <= 0) {
             formInvalid = true
-             
-            self.state = .failed(error: "Selecione uma foto" as! Error)
+            self.state = .erro(erro: "Selecione uma foto")
             return
         }
         
@@ -90,7 +93,7 @@ final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
         let dateFormatted = formatter.date(from: birthday)
 
         guard let dateFormatted = dateFormatted else {
-            self.state = .failed(error: "Data inválida \(birthday)" as! Error)
+            self.state = .erro(erro: "Data inválida \(birthday)")
             return
         }
         
@@ -116,8 +119,7 @@ final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
                 self?.state = .successfull
             }
             .store(in: &subscriptions)
-        
-     
+
     }
     
 }
@@ -133,6 +135,10 @@ private extension RegistrationViewModelImpl {
                     return false
                     
                 case .failed:
+                    return true
+                case .erro:
+                    return true
+                case .loading:
                     return true
                 }
             }

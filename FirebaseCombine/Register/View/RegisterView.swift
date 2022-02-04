@@ -61,26 +61,25 @@ struct RegisterView: View {
                         
                         Spacer()
                     }.padding(.horizontal, 8)
-                    
-                    ButtonView(title: "Cadastrar") {
-                        viewModel.register()
-                    }
+                    saveButton
                 }.padding()
-                
+                 
                     .applyClose()
-                    .alert(isPresented: $viewModel.hasError, content: {
-                        if case .failed(let error) = viewModel.state {
-                            return Alert(title: Text("Erro"), message: Text(error.localizedDescription))
-                        } else {
-                            return Alert(title: Text("Erro"), message: Text("Erro cadastro"))
-                        }
-                    })
-                
-                    .background(
-                        backgroundImage.frame(width:proxy.size.width)
-                            .edgesIgnoringSafeArea(.all)
-                    )
+              
             }
+            .background(
+                backgroundImage.frame(width:proxy.size.width)
+                    .edgesIgnoringSafeArea(.all)
+            )
+            
+              if case RegisrationUIState.error(let value) = viewModel.uiState {
+                  Text("")
+                      .alert(isPresented: .constant(true)) {
+                          Alert(title: Text("titulo"), message: Text(value), dismissButton: .default(Text("Ok")) {
+                              // faz algo quando some o alerta
+                          })
+                      }
+              }
         }
     }
 }
@@ -105,7 +104,7 @@ extension RegisterView {
                         .frame(width: 100, height: 100)
                         .padding()
                         .background()
-                        .foregroundColor(Color.white)
+                        .foregroundColor(Color.blue)
                         .cornerRadius(100.0)
                 }
             }
@@ -134,8 +133,9 @@ extension RegisterView {
 extension RegisterView {
     var passwordField: some View {
         InputPasswordView(password: $viewModel.password,
-                          placeholder: "Senha", sfSymbol: "lock")
-        
+                          placeholder: "Senha",
+                          sfSymbol: "lock")
+
     }
 }
 
@@ -200,22 +200,22 @@ extension RegisterView {
     }
 }
 
-//extension SignUpView {
-//    var saveButton: some View {
-//        LoadingButtonView(action: {
-//            viewModel.signUp()
-//
-//        },
-//                          text: "Realize o seu Cadastro",
-//                          showProgress: self.viewModel.uiState == SignUpUIState.loading,
-//                          disabled: !viewModel.email.isEmail() ||
-//                          viewModel.password.count < 8 ||
-//                          viewModel.fullName.count < 3 ||
-//                          viewModel.document.count != 14 ||
-//                          viewModel.phone.count < 14 || viewModel.phone.count > 15 ||
-//                          viewModel.birthday.count != 10)
-//    }
-//}
+extension RegisterView {
+    var saveButton: some View {
+       
+        RegisterButtonView(action: {
+            viewModel.register()
+        },
+                          text: "Realize o seu Cadastro",
+                          showProgress: self.viewModel.uiState == RegisrationUIState.loading,
+                          disabled: !viewModel.email.isEmail() ||
+                          viewModel.password.count < 8 ||
+                          viewModel.fullName.count < 3 ||
+                          viewModel.document.count != 14 ||
+                          viewModel.phone.count < 14 || viewModel.phone.count > 15 ||
+                          viewModel.birthday.count != 10)
+    }
+}
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {

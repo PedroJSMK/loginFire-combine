@@ -4,7 +4,7 @@
 //
 //  Created by PJSMK on 06/01/22.
 //
- 
+   
 import SwiftUI
 
 struct EditTextView: View {
@@ -26,10 +26,12 @@ struct EditTextView: View {
     VStack {
       if isSecure {
           SecureField(placeholder, text: $text)
+          
               .foregroundColor(Color("textColor"))
           .keyboardType(keyboard)
           .textFieldStyle(CustomTextFieldStyle())
           .font(.system(size: 15, weight: .bold, design: .default))
+          .padding(.leading, sfSymbol == nil ? textFieldLeading / 2 : textFieldLeading)
       } else {
         TextField(placeholder, text: $text)
           .foregroundColor(Color("textColor"))

@@ -12,23 +12,24 @@ struct LoginView: View {
     @State private var showRegistration = false
     @State private var showForgotPassword = false
     
-    @StateObject private var vm = LoginInViewModelImpl(service: LoginServiceImpl())
+    @StateObject private var viewModel = LoginInViewModelImpl(service: LoginServiceImpl())
     
     var body: some View {
         VStack(spacing: 16) {
             
             VStack(spacing: 16) {
-                // emailField
-                
-                EditTextView(text: $vm.credentials.email,
+                 
+                EditTextView(text: $viewModel.credentials.email,
                              placeholder: "Entre com seu e-mail *",
                              keyboard: .emailAddress,
                              error: "E-mail inválido",
-                             failure: !LoginCredentials.new.email.isEmail(),
+                             failure: !viewModel.credentials.email.isEmail(),
+                             //failure: !LoginCredentials.new.email.isEmail(),
+
                              sfSymbol: "envelope" )
+
                 
-                
-                InputPasswordView(password: $vm.credentials.password,
+                InputPasswordView(password: $viewModel.credentials.password,
                                   placeholder: "Senha",
                                   sfSymbol: "lock")
             }
@@ -49,7 +50,7 @@ struct LoginView: View {
             
             VStack {
                 ButtonView(title: "Login") {
-                    vm.login()
+                    viewModel.login()
                 }
                 
                 ButtonView(title:"Realizar cadastro",
@@ -66,9 +67,9 @@ struct LoginView: View {
         }
         .padding(.horizontal)
         .navigationTitle("Login")
-        .alert(isPresented: $vm.hasError,
+        .alert(isPresented: $viewModel.hasError,
                content: {
-            if case .failed(let error) = vm.state {
+            if case .failed(let error) = viewModel.state {
                 return Alert(title: Text("Erro"), message: Text(error.localizedDescription))
             } else {
                 return Alert(title: Text("Erro"), message: Text("Erro login"))
@@ -77,17 +78,17 @@ struct LoginView: View {
     }
 }
 
-extension LoginView {
-    var emailField: some View {
-        EditTextView(text: $vm.credentials.email,
-                     placeholder: "Entre com seu e-mail *",
-                     keyboard: .emailAddress,
-                     error: "E-mail inválido",
-                     failure: !LoginCredentials.new.email.isEmail(),
-                     sfSymbol: "envelope" )
-    }
-}
-
+//extension LoginView {
+//    var emailField: some View {
+//        EditTextView(text: $vm.credentials.email,
+//                     placeholder: "Entre com seu e-mail",
+//                     keyboard: .emailAddress,
+//                     error: "E-mail inválido",
+//                     failure: !LoginCredentials.new.email.isEmail(),
+//                     sfSymbol: "envelope" )
+//    }
+//}
+ 
 //extension LoginView {
 //    var emailField: some View {
 //        EditTextView(text: $vm.credentials.email,

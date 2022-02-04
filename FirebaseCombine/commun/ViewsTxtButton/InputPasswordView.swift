@@ -17,6 +17,13 @@ struct InputPasswordView: View {
 
     var body: some View {
         SecureField(placeholder, text: $password)
+            .foregroundColor(Color("textColor"))
+         
+        .textFieldStyle(CustomTextFieldStyle())
+        .font(.system(size: 15, weight: .bold, design: .default))
+        
+        
+        
             .frame(maxWidth: .infinity, minHeight: 44)
             .padding(.leading, sfSymbol == nil ? textFieldLeading / 2 : textFieldLeading)
             .background(
