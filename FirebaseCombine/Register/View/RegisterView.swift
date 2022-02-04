@@ -39,7 +39,7 @@ struct RegisterView: View {
                                 .font(Font.system(.title).bold())
                                 .padding(.bottom, 8)
                             
-                            Photo
+                             Photo
                             
                             fullNameField
                             
@@ -93,23 +93,26 @@ extension RegisterView {
                 if viewModel.image.size.width > 20 {
                     Image(uiImage: viewModel.image)
                         .resizable()
-                        .scaledToFit()
-                        .frame(width: 130, height: 130)
+                        .frame(width: 100, height: 100)
                         .clipShape(Circle())
-                        .overlay(Circle().stroke(Color("black"), lineWidth: 24))
+                        .overlay(Circle().stroke(Color("black"), lineWidth: 2.4))
                         .shadow(radius: 7)
                         .foregroundColor(Color.black)
+                        .cornerRadius(100.0)
+
                 } else {
-                    Text("Foto")
+                    Text("Selecione um Foto")
                         .frame(width: 100, height: 100)
                         .padding()
+                        .overlay( Circle().stroke(Color.blue, lineWidth: 2.0))
                         .background()
                         .foregroundColor(Color.blue)
                         .cornerRadius(100.0)
                 }
             }
             .padding(.bottom, 25)
-            
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+
             
             .sheet(isPresented: $isShowPhotolibrary) {
                 ImagePicker(selectedImage: $viewModel.image)
