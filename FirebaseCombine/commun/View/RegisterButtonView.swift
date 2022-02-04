@@ -2,7 +2,7 @@
 //  RegisterButtonView.swift
 //  FirebaseCombine
 //
-//  Created by Pedro Kanagusto on 04/02/22.
+//  Created by PJSMK on 04/02/22.
 //
 
 import SwiftUI

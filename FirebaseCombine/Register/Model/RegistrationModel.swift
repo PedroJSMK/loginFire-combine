@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct RegistrationModel: Encodable {
 
@@ -16,6 +17,7 @@ struct RegistrationModel: Encodable {
     var phone: String
     var birthday: String
     var gender: Int
+     
 }
 
 extension RegistrationModel {

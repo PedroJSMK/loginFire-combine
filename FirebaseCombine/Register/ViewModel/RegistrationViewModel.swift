@@ -28,9 +28,8 @@ protocol RegistrationViewModel {
     init(service: RegistrationService)
 }
 
-
 final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
-       
+    
     @Published var hasError: Bool = false
     @Published var state: RegistrationState = .na
     
@@ -42,13 +41,13 @@ final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
     @Published var password = ""
     @Published var document = ""
     @Published var phone = ""
-     @Published var gender = Gender.male
-    
+    @Published var gender = Gender.male
+ 
     private var cancellableSignUp: AnyCancellable?
     private var cancellableSignIn: AnyCancellable?
     
     @Published var uiState: RegisrationUIState = .none
-
+    
     let service: RegistrationService
     
     var userDetails: RegistrationModel = RegistrationModel.new
@@ -63,6 +62,7 @@ final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
     func register() {
         
  
+        
         func uploadPhoto() {
             let filename = UUID().uuidString
             
@@ -74,15 +74,15 @@ final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
             
             ref.putData(data, metadata: newMetadata) { metadata, err in
                 ref.downloadURL { url, error in
-                    self.state = .successfull
-                    
+                    self.uiState = .successfull
+                    print("foto criada \(url)")
                 }
             }
         }
         
         if(image.size.width <= 0) {
             formInvalid = true
-            self.state = .erro(erro: "Selecione uma foto")
+            self.uiState = .error("Selecione uma foto")
             return
         }
         
@@ -91,22 +91,22 @@ final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
         formatter.dateFormat = "dd/MM/yyyy"
         
         let dateFormatted = formatter.date(from: birthday)
-
+        
         guard let dateFormatted = dateFormatted else {
             self.state = .erro(erro: "Data inválida \(birthday)")
             return
         }
         
         formatter.dateFormat = "yyyy-MM-dd"
-         let birthday = formatter.string(from: dateFormatted)
+        let birthday = formatter.string(from: dateFormatted)
         
-         userDetails = RegistrationModel(fullName: fullName,
-                                         email: email,
-                                         password: password,
-                                         document: document,
-                                         phone: phone,
-                                         birthday: birthday,
-                                         gender: gender.index)
+        userDetails = RegistrationModel(fullName: fullName,
+                                        email: email,
+                                        password: password,
+                                        document: document,
+                                        phone: phone,
+                                        birthday: birthday,
+                                        gender: gender.index)
         service
             .register(with: userDetails)
             .sink { [weak self] res in
@@ -119,7 +119,7 @@ final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
                 self?.state = .successfull
             }
             .store(in: &subscriptions)
-
+             
     }
     
 }
@@ -146,4 +146,4 @@ private extension RegistrationViewModelImpl {
     }
 }
 
- 
+

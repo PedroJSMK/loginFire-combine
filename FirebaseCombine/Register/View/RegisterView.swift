@@ -39,7 +39,7 @@ struct RegisterView: View {
                                 .font(Font.system(.title).bold())
                                 .padding(.bottom, 8)
                             
-                             Photo
+                            Photo
                             
                             fullNameField
                             
@@ -63,23 +63,23 @@ struct RegisterView: View {
                     }.padding(.horizontal, 8)
                     saveButton
                 }.padding()
-                 
+                
                     .applyClose()
-              
+                
             }
             .background(
                 backgroundImage.frame(width:proxy.size.width)
                     .edgesIgnoringSafeArea(.all)
             )
             
-              if case RegisrationUIState.error(let value) = viewModel.uiState {
-                  Text("")
-                      .alert(isPresented: .constant(true)) {
-                          Alert(title: Text("titulo"), message: Text(value), dismissButton: .default(Text("Ok")) {
-                              // faz algo quando some o alerta
-                          })
-                      }
-              }
+            if case RegisrationUIState.error(let value) = viewModel.uiState {
+                Text("")
+                    .alert(isPresented: .constant(true)) {
+                        Alert(title: Text("titulo"), message: Text(value), dismissButton: .default(Text("Ok")) {
+                            // faz algo quando some o alerta
+                        })
+                    }
+            }
         }
     }
 }
@@ -99,7 +99,7 @@ extension RegisterView {
                         .shadow(radius: 7)
                         .foregroundColor(Color.black)
                         .cornerRadius(100.0)
-
+                    
                 } else {
                     Text("Selecione um Foto")
                         .frame(width: 100, height: 100)
@@ -112,7 +112,7 @@ extension RegisterView {
             }
             .padding(.bottom, 25)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-
+            
             
             .sheet(isPresented: $isShowPhotolibrary) {
                 ImagePicker(selectedImage: $viewModel.image)
@@ -138,7 +138,7 @@ extension RegisterView {
         InputPasswordView(password: $viewModel.password,
                           placeholder: "Senha",
                           sfSymbol: "lock")
-
+        
     }
 }
 
@@ -205,18 +205,18 @@ extension RegisterView {
 
 extension RegisterView {
     var saveButton: some View {
-       
+        
         RegisterButtonView(action: {
             viewModel.register()
         },
-                          text: "Realize o seu Cadastro",
-                          showProgress: self.viewModel.uiState == RegisrationUIState.loading,
-                          disabled: !viewModel.email.isEmail() ||
-                          viewModel.password.count < 8 ||
-                          viewModel.fullName.count < 3 ||
-                          viewModel.document.count != 14 ||
-                          viewModel.phone.count < 14 || viewModel.phone.count > 15 ||
-                          viewModel.birthday.count != 10)
+                           text: "Realize o seu Cadastro",
+                           showProgress: self.viewModel.uiState == RegisrationUIState.loading,
+                           disabled: !viewModel.email.isEmail() ||
+                           viewModel.password.count < 8 ||
+                           viewModel.fullName.count < 3 ||
+                           viewModel.document.count != 14 ||
+                           viewModel.phone.count < 14 || viewModel.phone.count > 15 ||
+                           viewModel.birthday.count != 10)
     }
 }
 

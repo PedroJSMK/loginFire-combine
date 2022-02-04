@@ -12,5 +12,5 @@ enum RegisrationUIState: Equatable {
   case none
   case loading
   case error(String)
-
+    case successfull
 }
